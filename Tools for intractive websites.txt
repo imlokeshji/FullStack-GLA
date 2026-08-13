@@ -1,0 +1,6 @@
+fullstack task :: basic gallery photo,dashboard
+
+typograpgy-Google fonts
+iconography-font awesome
+color platte-adobe kuler=>Monochromatic,di,tri
+media
