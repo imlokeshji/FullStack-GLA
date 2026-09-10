@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bento Grid</title>
+
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 150px);
+            grid-template-rows: repeat(3, 150px);
+            gap: 10px;
+
+            grid-template-areas:
+                "one one two two"
+                "one one three four"
+                "five six six six";
+        }
+
+        .box {
+            background: lightblue;
+            border: 2px solid black;
+        }
+
+        .box1 {
+            grid-area: one;
+        }
+
+        .box2 {
+            grid-area: two;
+        }
+
+        .box3 {
+            grid-area: three;
+        }
+
+        .box4 {
+            grid-area: four;
+        }
+
+        .box5 {
+            grid-area: five;
+        }
+
+        .box6 {
+            grid-area: six;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+        <div class="box box4">4</div>
+        <div class="box box5">5</div>
+        <div class="box box6">6</div>
+    </div>
+
+</body>
+</html>

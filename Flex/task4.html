@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            
+        }
+        body{
+            margin: 0;
+        }
+        .container {
+            background-color: lightgray;
+            height:100vh;
+            width: 100%;
+            display:flex;
+            border: 3px solid black ;
+
+        }
+        #vertical1{
+            text-align: center;
+            width:20%;
+            background-color: rgb(51, 43, 43);
+            border: 3px solid rgb(0,0,0) ;
+            color : rgb(255, 255, 255)
+        }
+        #vertical2{
+            
+            width: 80%;
+            background-color: rgb(192, 231, 218);
+            display:flex;
+            flex-direction: column;
+            border: 3px solid black ;
+            
+        }
+        #item1{
+            height: 15%;
+            background-color: rgb(255, 247, 238);
+            margin-bottom: 10px;
+        }
+        #item2{
+            height: 35%;
+            background-color:rgb(225, 217, 233);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        #item3{
+            background-color: rgb(216, 235, 196);
+            height: 50%;
+            
+        }
+
+        .cards{
+            margin: 15px;
+            background-color: grey;
+            width: 300px;
+            border-radius: 20px;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="vertical1">
+            <h1>side bar</h1>
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+            <p>4</p>
+            <p>5</p>
+        </div>
+        <div id="vertical2">
+            <div id="item1">Item 1</div>
+            <div id="item2">
+                <div class="cards">card1</div>
+                <div class="cards">card2</div>
+                <div class="cards">card3</div>
+                <div class="cards">card4</div>
+
+            </div>
+            <div id="item3">Item 3</div>
+        </div>
+    </div>
+</body>
+</html>
