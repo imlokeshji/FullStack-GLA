@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Taker</title>
+
+    <style>
+        body {
+            background: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .quiz {
+            padding: 25px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #020202;
+        }
+
+        .option {
+            display: block;
+            padding: 12px;
+            margin: 10px 0;
+            background: #f1f5f9;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="quiz">
+        <h1>Quiz Taker</h1>
+
+        <h3 id="question"></h3>
+
+        <div id="options"></div>
+
+        <button id="nextBtn" onclick="nextQuestion()">Next</button>
+
+        <h3 id="result"></h3>
+    </div>
+
+    <script>
+        let questions = [
+            {
+                question: "HTML stands for?",
+                options: ["Hyper Text Markup Language", "High Text Machine Language", "Home Tool Markup Language"],
+                answer: 0
+            },
+            {
+                question: "Which language styles a webpage?",
+                options: ["HTML", "CSS", "JavaScript"],
+                answer: 1
+            },
+            {
+                question: "Which language adds interactivity?",
+                options: ["CSS", "HTML", "JavaScript"],
+                answer: 2
+            }
+        ];
+
+        let index = 0;
+        let score = 0;
+
+        function showQuestions() {
+            document.getElementById("question").innerHTML =
+                questions[index].question;
+
+            let html = "";
+
+            for (let i = 0; i < questions[index].options.length; i++) {
+                html += `
+                    <label class="option">
+                        <input type="radio" name="answer" value="${i}">
+                        ${questions[index].options[i]}
+                    </label>
+                `;
+            }
+
+            document.getElementById("options").innerHTML = html;
+        }
+
+        function nextQuestion() {
+            let selected = document.querySelector(
+                'input[name="answer"]:checked'
+            );
+
+            if (selected == null) {
+                alert("Please select an answer!");
+                return;
+            }
+
+            if (selected.value == questions[index].answer) {
+                score++;
+            }
+
+            index++;
+
+            if (index < questions.length) {
+                showQuestions();
+            } else {
+                document.getElementById("question").innerHTML = "Quiz Completed!";
+                document.getElementById("options").innerHTML = "";
+                document.getElementById("result").innerHTML =
+                    "Your Score: " + score + "/" + questions.length;
+
+                document.getElementById("nextBtn").style.display = "none";
+            }
+        }
+
+        showQuestions();
+    </script>
+
+</body>
+</html>

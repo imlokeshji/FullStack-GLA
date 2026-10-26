@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="p"></p>
+
+        <script>
+        // var counter =0;
+// setInterval(()=>{
+//     counter++;
+//     console.log(counter+" seconds have passed");
+// },1000);
+var counter =0;
+let interval = setInterval(()=>{
+        counter++;
+        document.getElementById("p").innerHTML= counter+" seconds have passed";
+        if(counter === 5){
+            document.getElementById("p").innerHTML = "time out.....";
+            clearInterval(interval);
+        }
+        
+        },1000);
+
+
+
+    
+    </script>
+</body>
+</html>
