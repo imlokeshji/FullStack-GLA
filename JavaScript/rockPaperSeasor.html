@@ -1,0 +1,78 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stone Paper Scissors</title>
+
+    <style>
+        .container {
+            text-align: center;
+            background: #fcdede;
+            padding: 30px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+        .result {
+            background: #f48080;
+            padding: 15px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Stone Paper Scissors</h1>
+
+        <button onclick="play('stone')">Stone</button>
+        <button onclick="play('paper')">Paper</button>
+        <button onclick="play('scissors')">Scissors</button>
+
+        <div class="result" id="result">
+            Choose your option!
+        </div>
+
+    </div>
+
+    <script>
+        function play(user) {
+
+            var computerOptions = ["stone", "paper", "scissors"];
+
+            var computer = computerOptions[Math.floor(Math.random() * 3)];
+
+            var message = "";
+
+            if (user === computer) {
+                message = "It's a Draw!";
+            }
+            else if (
+                (user === "stone" && computer === "scissors") ||
+                (user === "paper" && computer === "stone") ||
+                (user === "scissors" && computer === "paper")
+            ) {
+                message = "You Win!";
+            }
+            else {
+                message = "Computer Wins!";
+            }
+
+            document.getElementById("result").innerHTML =
+                "You chose: " + user +
+                "<br>Computer chose: " + computer +
+                "<br>" + message;
+        }
+    </script>
+
+</body>
+</html>
+```

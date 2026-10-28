@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reaction Timer</title>
+    <style>
+        #screen {
+            background: lightgray;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 25px;
+        }
+
+        .green {
+            background: green !important;
+            color: white;
+        }
+        .grid button {
+            width: 120px;
+            height: 120px;
+            font-size: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Reaction Timer</h2>
+    <button onclick="startGame()">Start</button>
+
+    <div id="screen" onclick="checkTime()">Wait...</div>
+    <p id="result"></p>
+
+    <script>
+        var screen = document.getElementById("screen");
+        var timer;
+        var startTime;
+        var ready = false;
+
+        function startGame() {
+            clearTimeout(timer);
+            ready = false;
+
+            screen.classList.remove("green");
+            screen.textContent = "Wait for green...";
+            document.getElementById("result").textContent = "";
+
+            var delay = Math.floor(Math.random() * 3000) + 2000;
+
+            timer = setTimeout(function() {
+                screen.classList.add("green");
+                screen.textContent = "CLICK NOW!";
+                startTime = Date.now();
+                ready = true;
+            }, delay);
+        }
+
+        function checkTime() {
+            if (ready) {
+                var reaction = Date.now() - startTime;
+
+                document.getElementById("result").textContent =
+                    "Your time: " + reaction + " ms";
+
+                ready = false;
+                screen.classList.remove("green");
+                screen.textContent = "Click Start again!";
+            }
+            else {
+                clearTimeout(timer);
+                document.getElementById("result").textContent = "Too early!";
+            }
+        }
+    </script>
+
+</body>
+</html>

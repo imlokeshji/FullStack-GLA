@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Whack-a-Mole</title>
+
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .grid button {
+            width: 100px;
+            height: 100px;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        body {
+            text-align: center;
+            font-family: Arial;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Whack-a-Mole</h2>
+    <p>Score: <span id="score">0</span></p>
+    <p>Time: <span id="time">30</span></p>
+
+    <div class="grid" id="grid"></div>
+
+    <button onclick="startGame()" id="start">Start Game</button>
+
+    <script>
+        var grid = document.getElementById("grid");
+        var score = 0;
+        var time = 30;
+        var moleTimer, gameTimer;
+
+        for (var i = 0; i < 9; i++) {
+            grid.innerHTML += "<button onclick='hit(this)'></button>";
+        }
+
+        function showMole() {
+            var boxes = grid.children;
+
+            for (var i = 0; i < 9; i++) {
+                boxes[i].textContent = "";
+            }
+
+            var random = Math.floor(Math.random() * 9);
+            boxes[random].textContent = "🐹";
+        }
+
+        function hit(box) {
+            if (box.textContent === "🐹") {
+                score++;
+                document.getElementById("score").textContent = score;
+                box.textContent = "";
+            }
+        }
+
+        function startGame() {
+            clearInterval(moleTimer);
+            clearInterval(gameTimer);
+
+            score = 0;
+            time = 30;
+
+            document.getElementById("score").textContent = score;
+            document.getElementById("time").textContent = time;
+            document.getElementById("start").disabled = true;
+
+            showMole();
+
+            moleTimer = setInterval(showMole, 800);
+
+            gameTimer = setInterval(function() {
+                time--;
+                document.getElementById("time").textContent = time;
+
+                if (time === 0) {
+                    clearInterval(moleTimer);
+                    clearInterval(gameTimer);
+
+                    document.getElementById("start").disabled = false;
+
+                    alert("Game Over! Score: " + score);
+                }
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
